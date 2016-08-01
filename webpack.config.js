@@ -1,5 +1,6 @@
 const path = require('path');
 const glob = require('glob');
+
 const webpack = require('webpack');
 const ProvidePlugin = webpack.ProvidePlugin;
 const CommonsChunk = webpack.optimize.CommonsChunkPlugin;
@@ -30,6 +31,7 @@ let config = {
         //配置项,设置忽略js后缀
         extensions: ['', '.js', 'jsx', '.less', '.css', '.png', '.jpg'],
         //定义解析的根目录
+        // root: [process.cwd() + '/src', process.cwd() + '/node_modules'],
         // root: path.resolve(__dirname, 'app/common/scripts'),
         //定义别名，便于直接require('Test')
         alias: {
@@ -37,7 +39,7 @@ let config = {
             // 'react-dom': path.resolve(__dirname, 'node_modules/react-dom/dist/react-dom.js'),
             //由于jquery1.8.3为非amd或cmd格式的，所以alias引入时，得不到jquery对象
             jquery: path.resolve(__dirname, 'app/lib/jquery-1.8.3.js'),
-            // lodash: path.resolve(__dirname, 'app/lib/lodash'),
+            lodash: path.resolve(__dirname, 'app/lib/lodash'),
             Test: path.resolve(__dirname, './app/common/scripts/Test.js'),
             testexpose: path.resolve(__dirname, 'app/common/scripts/TestExpose.js')
         }
@@ -45,7 +47,7 @@ let config = {
     //将html中的外部链接变为可以使用require('jquery')等方法引入
     externals: {
         // 'jquery': '$',
-        'lodash': '_'
+        // 'lodash': '_'
     },
     module: {
         loaders: [
